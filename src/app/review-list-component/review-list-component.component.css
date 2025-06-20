@@ -25,6 +25,8 @@
   
   .image-wrapper {
     position: relative;
+    width: 20px;
+    height: 20px;
   }
   
   .discount-badge {

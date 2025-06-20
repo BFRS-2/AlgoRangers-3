@@ -1,37 +1,30 @@
 <div *ngIf="isLoading" class="loading">Loading reviews...</div>
 <div *ngIf="error" class="error">{{ error }}</div>
-
 <div class="review-container">
   <!-- Sidebar Filters -->
   <aside class="sidebar">
     <h3>FILTERS</h3>
-
     <div class="filter-section">
       <h4>Rating</h4>
       <label>
         <input
-        type="checkbox"
-        [checked]="filters.rating"
-        (change)="onFilterChange('rating', $event.target.checked)"
-      />
-      
+          type="checkbox"
+          [checked]="filters.rating"
+        />
         Rating ≥ 4
       </label>
     </div>
-
     <div class="filter-section">
       <h4>Reviews</h4>
       <label>
         <input
           type="checkbox"
           [checked]="filters.reviews"
-          (change)="onFilterChange('reviews', $event.target.checked)"
         />
         Reviews ≥ 10
       </label>
     </div>
   </aside>
-
   <!-- Reviews Grid -->
   <main class="products">
     <div class="product-card" *ngFor="let item of reviews">
@@ -39,21 +32,17 @@
         <img [src]="item.images?.[0]" alt="{{ item.title }}" />
         <span class="discount-badge">-{{ item.discount || 50 }}%</span>
       </div>
-
       <div class="card-content">
         <div class="brand">{{ item.title || 'UNKNOWN' }}</div>
-
         <div class="rating">
           <ng-container *ngFor="let star of getStars(item.rating)">
             <img [src]="star" class="star-icon" width="16" height="16" />
           </ng-container>
           ({{ item.totalReviews || 0 }})
         </div>
-
         <div class="price-row">
           ₹{{ item.price || 299 }}
         </div>
-
         <div class="emi">
           or ₹{{ (item.price || 299) / 3 | number: '1.0-0' }}/Month
           <span class="buy-emi">Buy on EMI</span>
@@ -62,5 +51,4 @@
     </div>
   </main>
 </div>
-
 <div *ngIf="isFetching && !isLoading" class="loading-more">Loading more...</div>
