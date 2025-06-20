@@ -42,18 +42,35 @@ export class ReviewListComponent implements OnInit {
     });
   }
 
-  onFilterChange(type: 'rating' | 'reviews', checked: boolean) {
+FilterChange(type: 'rating' | 'reviews', checked: boolean) {
+    console.log('Checkbox changed:', type, checked);
     this.filters[type] = checked;
     this.applyFilters();
   }
-
+  
   applyFilters() {
-    this.reviews = this.allReviews.filter(item => {
-      const meetsRating = !this.filters.rating || item.rating >= 4;
-      const meetsReviewCount = !this.filters.reviews || item.totalReviews >= 10;
-      return meetsRating && meetsReviewCount;
-    });
+    let filtered = [...this.allReviews];
+  
+    // Apply rating filter
+    if (this.filters.rating) {
+      filtered = filtered.filter(item => item.rating >= 4);
+  
+      // ✅ Sort by price ascending
+      filtered = filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+    }
+  
+    // Apply reviews count filter
+    if (this.filters.reviews) {
+      filtered = filtered.filter(item => item.totalReviews >= 10);
+  
+      // ✅ Sort by totalReviews descending
+      filtered = filtered.sort((a, b) => (b.totalReviews || 0) - (a.totalReviews || 0));
+    }
+  
+    this.reviews = filtered;
   }
+  
+  
 
   getStars(rating: number = 0): string[] {
     const stars = [];
