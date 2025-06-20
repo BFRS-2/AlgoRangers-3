@@ -12,8 +12,10 @@
         <input
           type="checkbox"
           [checked]="filters.rating"
+          (change)="onCheckboxChange($event, 'rating')"
+
         />
-        Rating ≥ 4
+        Rating
       </label>
     </div>
 
@@ -23,8 +25,10 @@
         <input
           type="checkbox"
           [checked]="filters.reviews"
+          (change)="onCheckboxChange($event, 'reviews')"
+
         />
-        Reviews ≥ 10
+        Reviews
       </label>
     </div>
   </aside>

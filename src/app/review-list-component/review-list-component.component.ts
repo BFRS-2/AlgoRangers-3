@@ -87,4 +87,31 @@ export class ReviewListComponentComponent {
     }
     return stars;
   }
+  onCheckboxChange(event: Event, type: 'rating' | 'reviews') {
+    const input = event.target as HTMLInputElement;
+    this.onFilterChange(type, input.checked);
+  }
+  
+  onFilterChange(type: 'rating' | 'reviews', checked: boolean) {
+    this.filters[type] = checked;
+    this.applyFilters();
+  }
+  
+  applyFilters() {
+    let filtered = [...this.reviews];
+  
+    if (this.filters.rating) {
+      filtered = filtered.filter(item => item.rating >= 4);
+      // Sort by price (ascending)
+      filtered = filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+    }
+  
+    if (this.filters.reviews) {
+      filtered = filtered.filter(item => item.totalReviews >= 10);
+      // Sort by totalReviews (descending)
+      filtered = filtered.sort((a, b) => (b.totalReviews || 0) - (a.totalReviews || 0));
+    }
+  
+    this.reviews = filtered;
+  }
 }
