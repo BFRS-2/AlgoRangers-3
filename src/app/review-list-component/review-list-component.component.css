@@ -23,11 +23,11 @@
     padding: 10px;
   }
   
-  .image-wrapper {
+  /* .image-wrapper {
     position: relative;
     width: 20px;
     height: 20px;
-  }
+  } */
   
   .discount-badge {
     position: absolute;
@@ -55,4 +55,34 @@
     font-size: 12px;
     margin-left: 5px;
   }
+  .image-wrapper {
+    position: relative;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .product-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  .discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  
   
