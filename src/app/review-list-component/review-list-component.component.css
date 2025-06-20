@@ -1,6 +1,9 @@
 .review-container {
     display: flex;
     gap: 20px;
+    display: flex;
+    padding: 10px 20px 20px 20px;
+    font-family: "SF Pro", sans-serif;
   }
   
   .sidebar {
