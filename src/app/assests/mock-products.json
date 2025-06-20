@@ -1,0 +1,25 @@
+[
+    {
+      "name": "Navy, White & Black 3 Pack Short Sleeve T-Shirts",
+      "brand": "HeganWalk",
+      "image": "https://via.placeholder.com/300x300?text=T-Shirts",
+      "price": 499,
+      "mrp": 1299,
+      "discount": 61,
+      "rating": 5.0,
+      "reviews": 1,
+      "emi": 166
+    },
+    {
+      "name": "Dubai Kunafa Bar",
+      "brand": "Almondzo",
+      "image": "https://via.placeholder.com/300x300?text=Kunafa+Bar",
+      "price": 199,
+      "mrp": 699,
+      "discount": 71,
+      "rating": 5.0,
+      "reviews": 2,
+      "emi": 66
+    }
+  ]
+  

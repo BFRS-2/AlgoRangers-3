@@ -1,0 +1,48 @@
+<div *ngIf="isLoading" class="loading">Loading reviews...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+<div class="review-container">
+    <!-- Sidebar Filters -->
+    <aside class="sidebar">
+      <h3>FILTERS</h3>
+      <div class="filter-section">
+        <h4>Category</h4>
+        <div *ngFor="let cat of ['Tea, Coffee & More', 'Skincare', 'Fragrances']">
+          <label><input type="checkbox"> {{ cat }}</label>
+        </div>
+      </div>
+  
+      <div class="filter-section">
+        <h4>Brand</h4>
+        <div *ngFor="let brand of ['Almondzo', 'Nooky India', 'La\'Forte']">
+          <label><input type="checkbox"> {{ brand }}</label>
+        </div>
+      </div>
+    </aside>
+  
+    <!-- Reviews Grid -->
+    <main class="products">
+      <div class="product-card" *ngFor="let item of reviews">
+        <div class="image-wrapper">
+          <img [src]="item.product_image_src" alt="Product Image" />
+          <span class="discount-badge">-{{ item.product_info?.discount || 50 }}%</span>
+        </div>
+  
+        <div class="card-content">
+          <div class="brand">{{ item?.corresponding_product.product_name || 'UNKNOWN BRAND' }}</div>
+          <div class="title">{{ item?.corresponding_product.product_name || 'No Title' }}</div>
+  
+          <div class="rating">
+            ⭐ {{ item.star || '0.0' }} ({{ item.review_count || 0 }})
+          </div>
+  
+          <div class="price-row">
+            ₹{{ item.product_info?.price || 299 }}
+            <span class="old-price">₹{{ item.product_info?.old_price || 999 }}</span>
+          </div>
+  
+          <div class="emi">or ₹{{ (item.product_info?.price || 299) / 3 | number:'1.0-0' }}/Month <span class="buy-emi">Buy on EMI</span></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
