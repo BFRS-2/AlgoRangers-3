@@ -56,37 +56,39 @@ export class ReviewListComponentComponent {
       },
     });
   }
-
   @HostListener('window:scroll', [])
   onScroll(): void {
-    const threshold = 100;
-    const position = window.innerHeight + window.scrollY;
-    const height = document.body.offsetHeight;
-
-    if (position >= height - threshold && !this.isFetching && !this.isLoading) {
+    const scrollTop = window.scrollY;
+    const clientHeight = window.innerHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+  
+    const threshold = 100; // px before reaching bottom
+    if (scrollTop + clientHeight >= scrollHeight - threshold) {
       this.fetchReviews();
     }
   }
-
+  
   getStars(rating: number = 0): string[] {
-    const fullStar = 'https://upload.wikimedia.org/wikipedia/commons/1/17/Star_full.svg';
-    const halfStar = 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Star_half.svg';
-    const emptyStar = 'https://upload.wikimedia.org/wikipedia/commons/4/49/Star_empty.svg';
-
+    const full = 'bi bi-star-fill';
+    const half = 'bi bi-star-half';
+    const empty = 'bi bi-star';
+  
     const stars: string[] = [];
-    const roundedRating = Math.round(rating * 2) / 2;
-
+    const rounded = Math.round(rating * 2) / 2;
+  
     for (let i = 1; i <= 5; i++) {
-      if (roundedRating >= i) {
-        stars.push(fullStar);
-      } else if (roundedRating + 0.5 === i) {
-        stars.push(halfStar);
+      if (rounded >= i) {
+        stars.push(full);
+      } else if (rounded + 0.5 === i) {
+        stars.push(half);
       } else {
-        stars.push(emptyStar);
+        stars.push(empty);
       }
     }
+  
     return stars;
   }
+  
   onCheckboxChange(event: Event, type: 'rating' | 'reviews') {
     const input = event.target as HTMLInputElement;
     this.onFilterChange(type, input.checked);

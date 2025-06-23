@@ -105,4 +105,10 @@
     color: #007aff;
     margin-left: 4px;
   }
-  
+  .star-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    margin-right: 2px;
+  }

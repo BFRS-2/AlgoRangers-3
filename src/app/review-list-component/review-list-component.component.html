@@ -48,10 +48,11 @@
 
         <div class="rating">
           <ng-container *ngFor="let star of getStars(item.rating)">
-            <img [src]="star" class="star-icon" width="16" height="16" />
+            <i [class]="star" style="color: #ffc107; font-size: 16px;"></i>
           </ng-container>
           ({{ item.totalReviews || 0 }})
         </div>
+        
 
         <!-- Price Display -->
         <div class="price-row">
